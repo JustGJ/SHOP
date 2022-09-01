@@ -1,6 +1,11 @@
 import { Container, createTheme, CssBaseline, ThemeProvider } from '@mui/material';
 import { useState } from 'react';
-import Catalog from './components/catalog/Catalog';
+import { Route } from 'react-router-dom';
+import About from './components/about';
+import Catalog from './components/catalog';
+import ProductDetails from './components/catalog/ProductDetails';
+import Contact from './components/contact';
+import Home from './components/home';
 import Header from './components/layout/Header';
 
 function App() {
@@ -24,7 +29,11 @@ function App() {
       <CssBaseline />
       <Header darkMode={darkMode} handleThemeChange={handleThemeChange} />
       <Container>
-        <Catalog />
+        <Route exact path="/" component={Home} />
+        <Route exact path="/catalog" component={Catalog} />
+        <Route path="/catalog/:id" component={ProductDetails} />
+        <Route path="/about" component={About} />
+        <Route path="/contact" component={Contact} />
       </Container>
     </ThemeProvider>
   );
